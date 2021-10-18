@@ -6,14 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.example.samplerecordingwithmediastore.SoundVisualizerView
+        android:id="@+id/visualizerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/basic10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recordTimeTextView"/>
+
     <Button
-        android:id="@+id/btnStartRecord"
+        android:id="@+id/resetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="녹음하기"
+        android:text="RESET"
+        app:layout_constraintTop_toTopOf="@id/recordBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/recordBtn"
+        app:layout_constraintBottom_toBottomOf="@id/recordBtn"
+        tools:ignore="HardcodedText" />
+
+    <com.example.samplerecordingwithmediastore.CountUpView
+        android:id="@+id/recordTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/basic20"
+        android:text="00:00"
+        android:textColor="@color/white"
+        android:textSize="@dimen/txt_20"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/recordBtn"
+        app:layout_constraintEnd_toEndOf="@id/recordBtn"
+        app:layout_constraintStart_toStartOf="@id/recordBtn"
+        tools:ignore="HardcodedText" />
+
+    <com.example.samplerecordingwithmediastore.RecordButton
+        android:id="@+id/recordBtn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="@dimen/basic50"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/basic25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:src="@drawable/ic_record"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

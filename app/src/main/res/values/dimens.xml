@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="basic50">50dp</dimen>
+    <dimen name="basic20">20dp</dimen>
+    <dimen name="basic10">10dp</dimen>
+    <dimen name="txt_20">20sp</dimen>
+    <dimen name="basic02">2dp</dimen>
+    <dimen name="basic25">25dp</dimen>
+</resources>
