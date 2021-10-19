@@ -53,4 +53,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:src="@drawable/ic_record"/>
 
+    <Button
+        android:id="@+id/listBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="list"
+        app:layout_constraintStart_toEndOf="@id/recordBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/recordBtn"
+        app:layout_constraintBottom_toBottomOf="@id/recordBtn"
+        tools:ignore="HardcodedText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

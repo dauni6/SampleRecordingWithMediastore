@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity() {
         binding.recordBtn.updateIconWithState(state)
     }
 
-    private fun bindViews() {
-        binding.recordBtn.setOnClickListener {
+    private fun bindViews() = with(binding) {
+        recordBtn.setOnClickListener {
             when(state) {
                 RecordState.BEFORE_RECORDING -> {
                     startRecording()
@@ -91,16 +91,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.resetBtn.setOnClickListener {
+        resetBtn.setOnClickListener {
             stopPlaying() // 재생중일 때 리셋할 수도 있으므로
             binding.visualizerView.clearVisualization()
             binding.recordTimeTextView.clearCountTime()
             state = RecordState.BEFORE_RECORDING
         }
 
-        binding.visualizerView.onRequestCurrentAmplitude = {
+        visualizerView.onRequestCurrentAmplitude = {
             recorder?.maxAmplitude ?: 0
         }
+
+        listBtn.setOnClickListener {
+            // 목록 불러오기
+            startActivity(ListActivity.newIntent(this@MainActivity))
+        }
+
     }
 
     private fun initVariables() {
@@ -166,11 +172,12 @@ class MainActivity : AppCompatActivity() {
         val recordingFile = File(recordingFilePath)
 
         val sdf = SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA)
-        val tempFileName = "monkey_${sdf.format(Date())}.mp4"
+        val tempFileName = "monkey_${sdf.format(Date())}.mp3"
 
         val values = ContentValues().apply {
             put(MediaStore.Audio.Media.DISPLAY_NAME, tempFileName)
-            put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp4")
+            put(MediaStore.Audio.Media.MIME_TYPE, "audio/mp3")
+            put(MediaStore.Audio.Media.DATE_ADDED, Date().time)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 put(MediaStore.Audio.Media.IS_PENDING, 1) // 1로 설정할 경우 보류중인 파일로 구분되어 다른 앱에 바로 노출되지 않아 다른 앱의 요청을 무시할 수 있음
                 put(MediaStore.Audio.Media.RELATIVE_PATH, Environment.DIRECTORY_MUSIC + "/MonkeysPhone/")
@@ -197,6 +204,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        Log.d("TEST", "check path = ${recordingFile.path}")
+        Log.d("TEST", "file exist? = ${recordingFile.exists()}")
+
+
+
 
     }
 
